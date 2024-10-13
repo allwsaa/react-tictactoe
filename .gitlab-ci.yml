@@ -1,0 +1,30 @@
+image: node:latest
+
+stages:
+ -prepare
+ -build
+ -test
+ -deploy
+
+
+prepare_job:
+ stage:prepare
+ script:
+  -npm install
+
+build_job:
+ stage:build
+ script: 
+  -npm run build
+
+test_job:
+ stage:test
+ script:
+  -npm run test
+
+deploy_job:
+ image: node:latest
+ stage:deploy
+ script:
+  - npm install -g serve
+  - serve -s build
