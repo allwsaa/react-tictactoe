@@ -1,4 +1,4 @@
-image: node:22.9.0
+image: node:20.13.1
 
 stages:
   - prepare
@@ -6,28 +6,30 @@ stages:
   - test
   - deploy
 
-prepare_job:
+prepare:
   stage: prepare
   script:
     - npm install
-    - npm install --save-dev typescript
+    - npm install typescript --save-dev
 
-build_job:
+build:
   stage: build
-  script: 
+  script:
     - npm install
     - ls node_modules/.bin
     - npm run build
-test_job:
+
+test:
+  image: node:20.13.1
   stage: test
   script:
     - npm install
     - npm run test
 
-deploy_job:
-  image: node:22.9.0
+deploy:
+  image: node:20.13.1
   stage: deploy
   script:
     - npm install -g serve
-    - serve -s build
-    - echo "web application is deployed"
+    - serve -s build &
+    - echo "Web application is deployed"
