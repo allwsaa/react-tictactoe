@@ -15,11 +15,13 @@ prepare_job:
 build_job:
   stage: build
   script: 
+    - npm install
+    - ls node_modules/.bin
     - npm run build
-
 test_job:
   stage: test
   script:
+    - npm install
     - npm run test
 
 deploy_job:
