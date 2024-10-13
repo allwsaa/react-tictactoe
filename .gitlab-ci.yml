@@ -10,6 +10,7 @@ prepare_job:
   stage: prepare
   script:
     - npm install
+    - npm install --save-dev typescript
 
 build_job:
   stage: build
