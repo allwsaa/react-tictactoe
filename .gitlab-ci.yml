@@ -1,4 +1,4 @@
-image: node:latest
+image: node:22.9.0
 
 stages:
   - prepare
@@ -22,7 +22,7 @@ test_job:
     - npm run test
 
 deploy_job:
-  image: node:latest
+  image: node:22.9.0
   stage: deploy
   script:
     - npm install -g serve
